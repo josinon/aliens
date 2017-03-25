@@ -1,5 +1,5 @@
-import sys
 import pygame
+import game_functions as gf
 from settings import Settings
 from ship import Ship
 
@@ -16,15 +16,8 @@ def run_game():
 	#Inicia o laço principal do jogo
 	while True:
 		#Observa eventos de teclado e de mouse
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				sys.exit()
-
-		#pinta a tela de cinza
-		screen.fill(ai_settings.bg_color)
-		ship.blitme()
-
-		#Deixa a tela mais recente visível
-		pygame.display.flip()
-
+		gf.check_events(ship)
+		ship.update()
+		gf.update_screen(ai_settings, screen, ship)
+		
 run_game() 
